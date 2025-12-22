@@ -62,4 +62,14 @@ def main():
             print(f"Error: {e}")
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        import traceback
+        print("\n" + "="*50)
+        print("CRITICAL ERROR DURING EXECUTION:")
+        traceback.print_exc()
+        print("="*50)
+        input("\nPress Enter to exit...")
+    except KeyboardInterrupt:
+        pass

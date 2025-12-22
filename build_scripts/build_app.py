@@ -8,11 +8,14 @@ def build():
     PyInstaller.__main__.run([
         'main.py',
         '--onefile',
+        '--console',
         '--name=CAD_AI_Assistant',
         '--collect-all=comtypes',
         '--collect-all=ollama',
         '--collect-all=pydantic',
         '--collect-all=python-dotenv',
+        '--hidden-import=comtypes.gen',
+        '--hidden-import=win32com',
         '--hidden-import=src.cad.autocad_client',
         '--hidden-import=src.llm.llm_manager',
     ])
