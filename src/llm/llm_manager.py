@@ -9,9 +9,15 @@ load_dotenv()
 class LLMManager:
     def __init__(self):
         self.model = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
-        self.api_url = os.getenv("LLM_API_URL")
+        self.api_url = os.getenv("LLM_API_URL", 'http://localhost:11434')
         
         if self.api_url:
+            # Cleanup URL if user pasted the endpoint instead of the base host
+            self.api_url = self.api_url.strip().rstrip('/')
+            for suffix in ['/api/generate', '/api/chat', '/api']:
+                if self.api_url.endswith(suffix):
+                    self.api_url = self.api_url[:-len(suffix)]
+            
             self.client = ollama.Client(host=self.api_url)
         else:
             self.client = ollama
@@ -141,9 +147,7 @@ class LLMManager:
         messages = [
             {
                 'role': 'system', 
-                'content': 'You are an expert AutoCAD assistant. When a user asks for a complex task, '
-                           'generate all the necessary tool calls in the correct logical order '
-                           '(e.g., draw a rectangle before trimming it).'
+                'content': 'You are an expert AutoCAD assistant. Use the provided tools to fulfill the user request.'
             },
             {'role': 'user', 'content': prompt}
         ]
@@ -153,7 +157,34 @@ class LLMManager:
             messages=messages,
             tools=self.get_tool_definitions(),
         )
-        return response['message'].get('tool_calls', [])
+        tool_calls = response['message'].get('tool_calls', [])
+        
+        # Fallback: if no structured tool calls, check if content looks like one
+        if not tool_calls:
+            content = response['message'].get('content', '').strip()
+            if content.startswith('{') and content.endswith('}'):
+                try:
+                    # Try to parse as a single tool call
+                    data = json.loads(content)
+                    if 'name' in data and 'arguments' in data:
+                        tool_calls = [{'function': data}]
+                except:
+                    pass
+            elif content.startswith('[') and content.endswith(']'):
+                try:
+                    # Try to parse as a list of tool calls
+                    data = json.loads(content)
+                    if isinstance(data, list) and len(data) > 0:
+                        potential_calls = []
+                        for item in data:
+                            if isinstance(item, dict) and 'name' in item and 'arguments' in item:
+                                potential_calls.append({'function': item})
+                        if potential_calls:
+                            tool_calls = potential_calls
+                except:
+                    pass
+
+        return tool_calls
 
 if __name__ == "__main__":
     manager = LLMManager()

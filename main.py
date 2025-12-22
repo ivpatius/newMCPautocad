@@ -2,6 +2,13 @@ def main():
     import sys
     import os
     import json
+    import shutil
+
+    # Ensure .env exists
+    if not os.path.exists(".env") and os.path.exists(".env.example"):
+        print("[*] .env file not found. Creating from .env.example...")
+        shutil.copy(".env.example", ".env")
+
     try:
         from src.cad.autocad_client import AutoCADClient
         from src.llm.llm_manager import LLMManager

@@ -28,5 +28,11 @@ def build():
         '--hidden-import=src.llm.llm_manager',
     ])
 
+    # Copy .env.example to dist folder for convenience
+    import shutil
+    if os.path.exists(".env.example"):
+        print("[*] Copying .env.example to dist folder...")
+        shutil.copy(".env.example", os.path.join("dist", ".env.example"))
+
 if __name__ == "__main__":
     build()
