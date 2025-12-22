@@ -47,18 +47,35 @@ class AutoCADClient:
 
     def add_spline(self, points):
         """Add a spline to the model space from a list of points."""
-        if not self.model_space:
+        try:
+            if not self.model_space:
+                return None
+            flattened_points = [p for pt in points for p in pt]
+            start_tan = comtypes.automation.VARIANT([0.0, 0.0, 0.0])
+            end_tan = comtypes.automation.VARIANT([0.0, 0.0, 0.0])
+            return self.model_space.AddSpline(comtypes.automation.VARIANT(flattened_points), start_tan, end_tan)
+        except Exception as e:
+            print(f"Error adding spline: {e}")
             return None
-        # comtypes might need specific handling for double arrays
-        flattened_points = [p for pt in points for p in pt]
-        start_tan = comtypes.automation.VARIANT([0.0, 0.0, 0.0])
-        end_tan = comtypes.automation.VARIANT([0.0, 0.0, 0.0])
-        return self.model_space.AddSpline(comtypes.automation.VARIANT(flattened_points), start_tan, end_tan)
+
+    def trim(self):
+        """Invoke the TRIM command in AutoCAD. 
+        Note: Trim usually requires interactive selection, but we can send command strings.
+        """
+        print("Sending TRIM command to AutoCAD...")
+        self.send_command("_TRIM")
 
     def send_command(self, command):
         """Send a raw command to AutoCAD."""
-        if self.doc:
-            self.doc.SendCommand(f"{command}\n")
+        try:
+            if self.doc:
+                # Use \r to simulate Enter
+                self.doc.SendCommand(f"{command} ")
+                return True
+        except Exception as e:
+            print(f"Error sending command: {e}")
+            return False
+        return False
 
 if __name__ == "__main__":
     client = AutoCADClient()

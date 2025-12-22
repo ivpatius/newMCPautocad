@@ -26,20 +26,30 @@ def main():
                 print("LLM did not identify any CAD commands.")
                 continue
                 
-            for call in tool_calls:
+            print(f"Total steps to execute: {len(tool_calls)}")
+            for i, call in enumerate(tool_calls, 1):
                 func_name = call['function']['name']
                 args = call['function']['arguments']
                 
-                print(f"Executing: {func_name}({args})")
+                print(f"[Step {i}/{len(tool_calls)}] Executing: {func_name}")
                 
-                if func_name == 'draw_line':
-                    cad.add_line(tuple(args['start']), tuple(args['end']))
-                elif func_name == 'draw_circle':
-                    cad.add_circle(tuple(args['center']), args['radius'])
-                elif func_name == 'draw_point':
-                    cad.add_point(tuple(args['point']))
-                else:
-                    print(f"Unsupported command: {func_name}")
+                try:
+                    if func_name == 'draw_line':
+                        cad.add_line(tuple(args['start']), tuple(args['end']))
+                    elif func_name == 'draw_circle':
+                        cad.add_circle(tuple(args['center']), args['radius'])
+                    elif func_name == 'draw_point':
+                        cad.add_point(tuple(args['point']))
+                    elif func_name == 'draw_arc':
+                        cad.add_arc(tuple(args['center']), args['radius'], args['start_angle'], args['end_angle'])
+                    elif func_name == 'draw_spline':
+                        cad.add_spline(args['points'])
+                    elif func_name == 'trim_entities':
+                        cad.trim()
+                    else:
+                        print(f"Unsupported command: {func_name}")
+                except Exception as step_error:
+                    print(f"Error in step {i}: {step_error}")
                     
         except KeyboardInterrupt:
             break

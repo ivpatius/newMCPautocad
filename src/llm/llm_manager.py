@@ -61,14 +61,70 @@ class LLMManager:
                         'required': ['point'],
                     },
                 },
+            },
+            {
+                'type': 'function',
+                'function': {
+                    'name': 'draw_arc',
+                    'description': 'Draw an arc in AutoCAD',
+                    'parameters': {
+                        'type': 'object',
+                        'properties': {
+                            'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
+                            'radius': {'type': 'number'},
+                            'start_angle': {'type': 'number', 'description': 'Start angle in radians'},
+                            'end_angle': {'type': 'number', 'description': 'End angle in radians'},
+                        },
+                        'required': ['center', 'radius', 'start_angle', 'end_angle'],
+                    },
+                },
+            },
+            {
+                'type': 'function',
+                'function': {
+                    'name': 'draw_spline',
+                    'description': 'Draw a spline line in AutoCAD',
+                    'parameters': {
+                        'type': 'object',
+                        'properties': {
+                            'points': {
+                                'type': 'array', 
+                                'items': {'type': 'array', 'items': {'type': 'number'}}, 
+                                'description': 'List of points [[x,y,z], [x,y,z], ...]'
+                            },
+                        },
+                        'required': ['points'],
+                    },
+                },
+            },
+            {
+                'type': 'function',
+                'function': {
+                    'name': 'trim_entities',
+                    'description': 'Invoke the TRIM command in AutoCAD to clean up lines.',
+                    'parameters': {
+                        'type': 'object',
+                        'properties': {},
+                    },
+                },
             }
         ]
 
     def process_prompt(self, prompt):
-        """Send prompt to LLM and get tool calls."""
+        """Send prompt to LLM and get tool calls, encouraging sequential reasoning."""
+        messages = [
+            {
+                'role': 'system', 
+                'content': 'You are an expert AutoCAD assistant. When a user asks for a complex task, '
+                           'generate all the necessary tool calls in the correct logical order '
+                           '(e.g., draw a rectangle before trimming it).'
+            },
+            {'role': 'user', 'content': prompt}
+        ]
+        
         response = self.client.chat(
             model=self.model,
-            messages=[{'role': 'user', 'content': prompt}],
+            messages=messages,
             tools=self.get_tool_definitions(),
         )
         return response['message'].get('tool_calls', [])
