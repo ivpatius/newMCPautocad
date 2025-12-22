@@ -1,0 +1,7 @@
+comtypes
+pywin32
+ollama
+pydantic
+pytest
+pyinstaller
+python-dotenv
