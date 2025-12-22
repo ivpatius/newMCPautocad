@@ -8,16 +8,32 @@ class AutoCADClient:
         self.model_space = None
 
     def connect(self):
-        """Connect to a running instance of AutoCAD."""
-        try:
-            self.app = comtypes.client.GetActiveObject("AutoCAD.Application")
-            self.doc = self.app.ActiveDocument
-            self.model_space = self.doc.ModelSpace
-            print("Successfully connected to AutoCAD.")
-            return True
-        except Exception as e:
-            print(f"Error connecting to AutoCAD: {e}")
-            return False
+        """Connect to a running instance of AutoCAD, trying multiple ProgIDs."""
+        prog_ids = [
+            "AutoCAD.Application",      # Generic
+            "AutoCAD.Application.25",   # AutoCAD 2024
+            "AutoCAD.Application.24.1", # AutoCAD 2022
+            "AutoCAD.Application.24",   # AutoCAD 2021
+            "AutoCAD.Application.23.1", # AutoCAD 2020
+            "AutoCAD.Application.23",   # AutoCAD 2019
+        ]
+        
+        last_error = None
+        for prog_id in prog_ids:
+            try:
+                print(f"Trying to connect via {prog_id}...")
+                self.app = comtypes.client.GetActiveObject(prog_id)
+                self.doc = self.app.ActiveDocument
+                self.model_space = self.doc.ModelSpace
+                print(f"Successfully connected to AutoCAD via {prog_id}.")
+                return True
+            except Exception as e:
+                last_error = e
+                continue
+        
+        print(f"Error connecting to AutoCAD: {last_error}")
+        print("Tip: Make sure AutoCAD is open and a drawing is active.")
+        return False
 
     def add_line(self, start_point, end_point):
         """Add a line to the model space."""
