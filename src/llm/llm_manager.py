@@ -1,9 +1,20 @@
 import json
+import os
 import ollama
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 class LLMManager:
-    def __init__(self, model="llama3"):
-        self.model = model
+    def __init__(self):
+        self.model = os.getenv("OLLAMA_MODEL", "llama3")
+        self.api_url = os.getenv("LLM_API_URL")
+        
+        if self.api_url:
+            self.client = ollama.Client(host=self.api_url)
+        else:
+            self.client = ollama
 
     def get_tool_definitions(self):
         return [
@@ -55,7 +66,7 @@ class LLMManager:
 
     def process_prompt(self, prompt):
         """Send prompt to LLM and get tool calls."""
-        response = ollama.chat(
+        response = self.client.chat(
             model=self.model,
             messages=[{'role': 'user', 'content': prompt}],
             tools=self.get_tool_definitions(),
