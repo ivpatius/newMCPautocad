@@ -1,5 +1,7 @@
-import comtypes.client
+import win32com.client
+import pythoncom
 import time
+from array import array
 
 class AutoCADClient:
     def __init__(self):
@@ -8,31 +10,32 @@ class AutoCADClient:
         self.model_space = None
 
     def connect(self):
-        """Connect to a running instance of AutoCAD, trying multiple ProgIDs."""
+        """Connect to a running instance of AutoCAD using win32com."""
         prog_ids = [
-            "AutoCAD.Application",      # Generic
-            "AutoCAD.Application.25",   # AutoCAD 2024
-            "AutoCAD.Application.24.1", # AutoCAD 2022
-            "AutoCAD.Application.24",   # AutoCAD 2021
-            "AutoCAD.Application.23.1", # AutoCAD 2020
-            "AutoCAD.Application.23",   # AutoCAD 2019
-            "AutoCAD.Application.22",   # AutoCAD 2018
-            "AutoCAD.Application.21",   # AutoCAD 2017
-            "AutoCAD.Application.20.1", # AutoCAD 2016
-            "AutoCAD.Application.20",   # AutoCAD 2015
+            "AutoCAD.Application",
+            "AutoCAD.Application.25",
+            "AutoCAD.Application.24.1",
+            "AutoCAD.Application.24",
+            "AutoCAD.Application.23.1",
+            "AutoCAD.Application.23",
+            "AutoCAD.Application.22",
+            "AutoCAD.Application.21",
+            "AutoCAD.Application.20.1",
+            "AutoCAD.Application.20",
         ]
         
         last_error = None
         for prog_id in prog_ids:
             try:
                 print(f"[*] Trying to connect via '{prog_id}'...")
-                self.app = comtypes.client.GetActiveObject(prog_id)
+                # win32com.client.GetActiveObject is generally more robust for running apps
+                self.app = win32com.client.GetActiveObject(prog_id)
                 self.doc = self.app.ActiveDocument
                 self.model_space = self.doc.ModelSpace
                 print(f"[+] Successfully connected via '{prog_id}'.")
                 return True
             except Exception as e:
-                print(f"    [-] Connection failed for '{prog_id}': {e}")
+                # print(f"    [-] Connection failed for '{prog_id}': {e}")
                 last_error = e
                 continue
         
@@ -40,61 +43,76 @@ class AutoCADClient:
         print("Tip: Make sure AutoCAD is open and a drawing is active.")
         return False
 
-    def _normalize_point(self, point):
-        """Ensure point is a 3-tuple (x, y, z), defaulting z to 0.0 if missing."""
+    def _get_double_array(self, point):
+        """Convert a point to a win32com-compatible double array."""
         if len(point) == 2:
-            return (float(point[0]), float(point[1]), 0.0)
-        return (float(point[0]), float(point[1]), float(point[2]))
+            return win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, (float(point[0]), float(point[1]), 0.0))
+        return win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, (float(point[0]), float(point[1]), float(point[2])))
 
     def add_line(self, start_point, end_point):
-        """Add a line to the model space. Supports 2D and 3D points."""
-        if not self.model_space:
-            return None
-        start = self._normalize_point(start_point)
-        end = self._normalize_point(end_point)
-        return self.model_space.AddLine(start, end)
+        """Add a line to the model space."""
+        if not self.model_space: return None
+        try:
+            start = self._get_double_array(start_point)
+            end = self._get_double_array(end_point)
+            return self.model_space.AddLine(start, end)
+        except Exception as e:
+            print(f"Error in add_line: {e}")
+            raise e
 
     def add_circle(self, center, radius):
-        """Add a circle to the model space. Supports 2D and 3D center."""
-        if not self.model_space:
-            return None
-        norm_center = self._normalize_point(center)
-        return self.model_space.AddCircle(norm_center, float(radius))
+        """Add a circle to the model space."""
+        if not self.model_space: return None
+        try:
+            c = self._get_double_array(center)
+            return self.model_space.AddCircle(c, float(radius))
+        except Exception as e:
+            print(f"Error in add_circle: {e}")
+            raise e
 
     def add_point(self, point):
-        """Add a point to the model space. Supports 2D and 3D input."""
-        if not self.model_space:
-            return None
-        norm_point = self._normalize_point(point)
-        return self.model_space.AddPoint(norm_point)
+        """Add a point to the model space."""
+        if not self.model_space: return None
+        try:
+            p = self._get_double_array(point)
+            return self.model_space.AddPoint(p)
+        except Exception as e:
+            print(f"Error in add_point: {e}")
+            raise e
 
     def add_arc(self, center, radius, start_angle, end_angle):
-        """Add an arc to the model space. Supports 2D and 3D center."""
-        if not self.model_space:
-            return None
-        norm_center = self._normalize_point(center)
-        return self.model_space.AddArc(norm_center, float(radius), float(start_angle), float(end_angle))
+        """Add an arc to the model space."""
+        if not self.model_space: return None
+        try:
+            c = self._get_double_array(center)
+            return self.model_space.AddArc(c, float(radius), float(start_angle), float(end_angle))
+        except Exception as e:
+            print(f"Error in add_arc: {e}")
+            raise e
 
     def add_spline(self, points):
-        """Add a spline to the model space from a list of 2D or 3D points."""
+        """Add a spline to the model space."""
+        if not self.model_space: return None
         try:
-            if not self.model_space:
-                return None
-            normalized_points = [self._normalize_point(pt) for pt in points]
-            flattened_points = [coords for pt in normalized_points for coords in pt]
-            start_tan = comtypes.automation.VARIANT([0.0, 0.0, 0.0])
-            end_tan = comtypes.automation.VARIANT([0.0, 0.0, 0.0])
-            return self.model_space.AddSpline(flattened_points, start_tan, end_tan)
+            flattened = []
+            for pt in points:
+                if len(pt) == 2:
+                    flattened.extend([float(pt[0]), float(pt[1]), 0.0])
+                else:
+                    flattened.extend([float(pt[0]), float(pt[1]), float(pt[2])])
+            
+            pts_array = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, flattened)
+            start_tan = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, [0.0, 0.0, 0.0])
+            end_tan = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, [0.0, 0.0, 0.0])
+            return self.model_space.AddSpline(pts_array, start_tan, end_tan)
         except Exception as e:
-            print(f"Error adding spline: {e}")
-            return None
+            print(f"Error in add_spline: {e}")
+            raise e
 
     def get_layers_info(self):
         """Retrieve a list of layers and their properties."""
         try:
-            if not self.doc:
-                return []
-            
+            if not self.doc: return []
             layers_data = []
             layers = self.doc.Layers
             for i in range(layers.Count):
@@ -114,39 +132,25 @@ class AutoCADClient:
     def set_layer_status(self, layer_name, is_on):
         """Enable or disable a specific layer."""
         try:
-            if not self.doc:
-                return False
-            
+            if not self.doc: return False
             layer = self.doc.Layers.Item(layer_name)
             layer.LayerOn = is_on
-            print(f"Layer '{layer_name}' set to {'ON' if is_on else 'OFF'}.")
             return True
         except Exception as e:
-            print(f"Error setting layer status for '{layer_name}': {e}")
+            print(f"Error setting layer status: {e}")
             return False
 
     def trim(self):
-        """Invoke the TRIM command in AutoCAD. 
-        Note: Trim usually requires interactive selection, but we can send command strings.
-        """
-        print("Sending TRIM command to AutoCAD...")
+        """Invoke the TRIM command."""
         self.send_command("_TRIM")
 
     def send_command(self, command):
         """Send a raw command to AutoCAD."""
         try:
             if self.doc:
-                # Use \r to simulate Enter
                 self.doc.SendCommand(f"{command} ")
                 return True
         except Exception as e:
             print(f"Error sending command: {e}")
             return False
         return False
-
-if __name__ == "__main__":
-    client = AutoCADClient()
-    if client.connect():
-        # Example: Draw a simple line
-        client.add_line((0, 0, 0), (10, 10, 0))
-        client.add_circle((5, 5, 0), 2.5)

@@ -12,6 +12,8 @@ def main():
     try:
         from src.cad.autocad_client import AutoCADClient
         from src.llm.llm_manager import LLMManager
+        import win32com.client
+        import pythoncom
     except ImportError as e:
         print(f"\n[!] IMPORT ERROR: {e}")
         print("This usually means a library is missing from the compiled executable.")
