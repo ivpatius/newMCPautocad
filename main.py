@@ -1,10 +1,15 @@
-import sys
-import os
-import json
-from src.cad.autocad_client import AutoCADClient
-from src.llm.llm_manager import LLMManager
-
 def main():
+    import sys
+    import os
+    import json
+    try:
+        from src.cad.autocad_client import AutoCADClient
+        from src.llm.llm_manager import LLMManager
+    except ImportError as e:
+        print(f"\n[!] IMPORT ERROR: {e}")
+        print("This usually means a library is missing from the compiled executable.")
+        raise e
+
     print("--- AutoCAD AI Assistant ---")
     
     cad = AutoCADClient()
