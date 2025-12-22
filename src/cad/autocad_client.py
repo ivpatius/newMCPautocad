@@ -100,6 +100,20 @@ class AutoCADClient:
             print(f"Error retrieving layers: {e}")
             return []
 
+    def set_layer_status(self, layer_name, is_on):
+        """Enable or disable a specific layer."""
+        try:
+            if not self.doc:
+                return False
+            
+            layer = self.doc.Layers.Item(layer_name)
+            layer.LayerOn = is_on
+            print(f"Layer '{layer_name}' set to {'ON' if is_on else 'OFF'}.")
+            return True
+        except Exception as e:
+            print(f"Error setting layer status for '{layer_name}': {e}")
+            return False
+
     def trim(self):
         """Invoke the TRIM command in AutoCAD. 
         Note: Trim usually requires interactive selection, but we can send command strings.

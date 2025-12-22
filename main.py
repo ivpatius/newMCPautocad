@@ -61,6 +61,13 @@ def main():
                             messages=[{'role': 'user', 'content': summary_prompt}]
                         )
                         print(f"\n[Layers Summary]:\n{summary_response['message']['content']}")
+                    elif func_name == 'set_layer_status':
+                        success = cad.set_layer_status(args['layer_name'], args['is_on'])
+                        status_str = "ON" if args['is_on'] else "OFF"
+                        if success:
+                            print(f"[*] Layer '{args['layer_name']}' successfully turned {status_str}.")
+                        else:
+                            print(f"[!] Failed to turn {status_str} the layer '{args['layer_name']}'.")
                     else:
                         print(f"Unsupported command: {func_name}")
                 except Exception as step_error:

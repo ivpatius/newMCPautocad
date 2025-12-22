@@ -118,6 +118,21 @@ class LLMManager:
                         'properties': {},
                     },
                 },
+            },
+            {
+                'type': 'function',
+                'function': {
+                    'name': 'set_layer_status',
+                    'description': 'Enable or disable a specific layer by name.',
+                    'parameters': {
+                        'type': 'object',
+                        'properties': {
+                            'layer_name': {'type': 'string', 'description': 'The name of the layer to modify'},
+                            'is_on': {'type': 'boolean', 'description': 'True to turn ON, False to turn OFF'},
+                        },
+                        'required': ['layer_name', 'is_on'],
+                    },
+                },
             }
         ]
 
