@@ -2,10 +2,18 @@
 
 This project provides a bridge between LLMs (via Ollama or other providers) and CAD software (AutoCAD and/or Revit). Use natural language to draw and manipulate CAD entities directly.
 
+<img src="portada.png" alt="Preview">
+
 ## Features
 - **AutoCAD Integration**: Draw points, lines, circles, arcs, and splines via COM automation.
 - **LLM-Driven**: Powered by Ollama tool-calling for intelligent intent parsing.
 - **Portable**: Can be compiled into a single `.exe` for easy distribution.
+
+## Windows executable
+
+AutoCAD must be opened first.
+Ollama must be running first, recommended LLM to use: `qwen2.5-coder:7b`.
+[Download the executable](https://github.com/metantonio/autocad-ai/releases/latest)
 
 ## Installation (Virtual Environment)
 
