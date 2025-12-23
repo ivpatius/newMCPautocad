@@ -100,6 +100,9 @@ def main():
                     elif func_name == 'change_layer_color':
                         cad.change_layer_color(args['layer_name'], args['color'])
                         print(f"[*] Layer '{args['layer_name']}' color set to {args['color']}.")
+                    elif func_name == 'draw_radials':
+                        cad.draw_radials(args['center'], args['radius'], args['angle_increment'])
+                        print(f"[*] Radial pattern created at {args['center']} with radius {args['radius']}.")
                     else:
                         print(f"Unsupported command: {func_name}")
                 except Exception as step_error:

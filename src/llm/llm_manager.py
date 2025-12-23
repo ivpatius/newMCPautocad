@@ -201,6 +201,22 @@ class LLMManager:
                         'required': ['layer_name', 'color'],
                     },
                 },
+            },
+            {
+                'type': 'function',
+                'function': {
+                    'name': 'draw_radials',
+                    'description': 'Draw a circle and a series of radial lines clockwise starting from the top.',
+                    'parameters': {
+                        'type': 'object',
+                        'properties': {
+                            'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
+                            'radius': {'type': 'number'},
+                            'angle_increment': {'type': 'number', 'description': 'Angle in degrees between each radial line'},
+                        },
+                        'required': ['center', 'radius', 'angle_increment'],
+                    },
+                },
             }
         ]
 

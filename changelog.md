@@ -1,3 +1,19 @@
+## Update - 2025-12-22 19:25:00
+
+# Advanced CAD Features & Enhanced Interaction
+
+I have implemented several new capabilities to extend the assistant's control over AutoCAD and improve the user experience.
+
+## New Features
+- **Radial Patterns**: Added `draw_radials` to create a circle with radial lines distributed clockwise starting from the top.
+- **Advanced Layer Management**:
+    - **Renaming**: Change the name of existing layers.
+    - **Color Editing**: Update the color of any layer via natural language commands.
+- **Interactive Circle Parameters**: The assistant now detects missing center coordinates or radius and interactively asks the user for clarification instead of failing.
+- **Improved Spline Defaults**: Splines now default to 15-degree tangents at both ends if no angles are specified, ensuring consistent curvature.
+
+---
+
 ## Update - 2025-12-22 19:10:00
 
 # Fixes and Enhancements: Robustness & Stability

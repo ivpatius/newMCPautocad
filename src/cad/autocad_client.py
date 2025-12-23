@@ -156,6 +156,45 @@ class AutoCADClient:
             print(f"Error changing layer color: {e}")
             return False
 
+    def draw_radials(self, center, radius, angle_increment):
+        """Draw a circle and radial lines clockwise starting from the top."""
+        try:
+            if not self.model_space: return None
+            import math
+            
+            # 1. Draw the circle
+            self.add_circle(center, radius)
+            
+            # 2. Draw radial lines
+            # In AutoCAD, 0 degrees is to the right (East).
+            # Vertical up is 90 degrees.
+            # Clockwise means we subtract the increment.
+            
+            cx, cy = float(center[0]), float(center[1])
+            cz = float(center[2]) if len(center) > 2 else 0.0
+            r = float(radius)
+            inc = float(angle_increment)
+            
+            current_angle_deg = 90.0
+            # We draw until we've covered 360 degrees
+            # Using a small epsilon to avoid floating point issues if the increment divides 360 exactly
+            total_rotated = 0.0
+            while total_rotated < 359.9:
+                rad = math.radians(current_angle_deg)
+                ex = cx + r * math.cos(rad)
+                ey = cy + r * math.sin(rad)
+                
+                self.add_line((cx, cy, cz), (ex, ey, cz))
+                
+                current_angle_deg -= inc
+                total_rotated += inc
+            
+            print(f"[+] Radial pattern completed at {center} with radius {radius} and {inc}° increments.")
+            return True
+        except Exception as e:
+            print(f"Error drawing radials: {e}")
+            return False
+
     def get_layers_info(self):
         """Retrieve a list of layers and their properties."""
         try:
