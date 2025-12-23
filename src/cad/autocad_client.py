@@ -195,6 +195,31 @@ class AutoCADClient:
             print(f"Error drawing radials: {e}")
             return False
 
+    def cloud_radials(self, center, radii, angle_increment=20.0):
+        """Draw radial lines with different lengths clockwise starting from the top."""
+        try:
+            if not self.model_space: return None
+            import math
+            
+            cx, cy = float(center[0]), float(center[1])
+            cz = float(center[2]) if len(center) > 2 else 0.0
+            inc = float(angle_increment)
+            
+            current_angle_deg = 90.0
+            for r in radii:
+                rad = math.radians(current_angle_deg)
+                ex = cx + float(r) * math.cos(rad)
+                ey = cy + float(r) * math.sin(rad)
+                
+                self.add_line((cx, cy, cz), (ex, ey, cz))
+                current_angle_deg -= inc
+            
+            print(f"[+] Cloud radial pattern completed at {center} with {len(radii)} lines.")
+            return True
+        except Exception as e:
+            print(f"Error drawing cloud radials: {e}")
+            return False
+
     def get_layers_info(self):
         """Retrieve a list of layers and their properties."""
         try:

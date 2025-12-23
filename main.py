@@ -103,6 +103,9 @@ def main():
                     elif func_name == 'draw_radials':
                         cad.draw_radials(args['center'], args['radius'], args['angle_increment'])
                         print(f"[*] Radial pattern created at {args['center']} with radius {args['radius']}.")
+                    elif func_name == 'draw_cloud_radials':
+                        cad.cloud_radials(args['center'], args['radii'], args.get('angle_increment', 20.0))
+                        print(f"[*] Cloud radial pattern created at {args['center']} with {len(args['radii'])} lines.")
                     else:
                         print(f"Unsupported command: {func_name}")
                 except Exception as step_error:

@@ -217,6 +217,26 @@ class LLMManager:
                         'required': ['center', 'radius', 'angle_increment'],
                     },
                 },
+            },
+            {
+                'type': 'function',
+                'function': {
+                    'name': 'draw_cloud_radials',
+                    'description': 'Draw a series of radial lines with different lengths clockwise starting from the top.',
+                    'parameters': {
+                        'type': 'object',
+                        'properties': {
+                            'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
+                            'radii': {'type': 'array', 'items': {'type': 'number'}, 'description': 'List of lengths for each radial line'},
+                            'angle_increment': {
+                                'type': 'number', 
+                                'description': 'Angle in degrees between each radial line',
+                                'default': 20.0
+                            },
+                        },
+                        'required': ['center', 'radii'],
+                    },
+                },
             }
         ]
 
