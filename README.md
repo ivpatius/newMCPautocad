@@ -1,4 +1,4 @@
-# AutoCAD & Revit AI Assistant
+# AutoCAD AI Assistant
 
 This project provides a bridge between LLMs (via Ollama or other providers) and CAD software (AutoCAD and/or Revit). Use natural language to draw and manipulate CAD entities directly.
 
