@@ -89,7 +89,7 @@ class LLMManager:
                 'type': 'function',
                 'function': {
                     'name': 'draw_spline',
-                    'description': 'Draw a spline line in AutoCAD',
+                    'description': 'Draw a spline line in AutoCAD with optional start/end tangent angles.',
                     'parameters': {
                         'type': 'object',
                         'properties': {
@@ -97,6 +97,16 @@ class LLMManager:
                                 'type': 'array', 
                                 'items': {'type': 'array', 'items': {'type': 'number'}}, 
                                 'description': 'List of points [[x,y,z], [x,y,z], ...]'
+                            },
+                            'start_angle': {
+                                'type': 'number', 
+                                'description': 'Start tangent angle in degrees. Default is 15.',
+                                'default': 15.0
+                            },
+                            'end_angle': {
+                                'type': 'number', 
+                                'description': 'End tangent angle in degrees. Default is 15.',
+                                'default': 15.0
                             },
                         },
                         'required': ['points'],

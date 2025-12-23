@@ -63,7 +63,11 @@ def main():
                     elif func_name == 'draw_arc':
                         cad.add_arc(tuple(args['center']), args['radius'], args['start_angle'], args['end_angle'])
                     elif func_name == 'draw_spline':
-                        cad.add_spline(args['points'])
+                        cad.add_spline(
+                            args['points'], 
+                            args.get('start_angle', 15.0), 
+                            args.get('end_angle', 15.0)
+                        )
                     elif func_name == 'trim_entities':
                         cad.trim()
                     elif func_name == 'list_layers':

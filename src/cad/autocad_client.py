@@ -90,10 +90,11 @@ class AutoCADClient:
             print(f"Error in add_arc: {e}")
             raise e
 
-    def add_spline(self, points):
-        """Add a spline to the model space."""
+    def add_spline(self, points, start_angle=15.0, end_angle=15.0):
+        """Add a spline to the model space with tangent angles (in degrees)."""
         if not self.model_space: return None
         try:
+            import math
             flattened = []
             for pt in points:
                 if len(pt) == 2:
@@ -101,9 +102,18 @@ class AutoCADClient:
                 else:
                     flattened.extend([float(pt[0]), float(pt[1]), float(pt[2])])
             
+            # Convert degrees to vectors for AutoCAD
+            # We assume the tangents are in the XY plane for natural user input
+            s_rad = math.radians(float(start_angle))
+            e_rad = math.radians(float(end_angle))
+            
+            s_vec = [math.cos(s_rad), math.sin(s_rad), 0.0]
+            e_vec = [math.cos(e_rad), math.sin(e_rad), 0.0]
+
             pts_array = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, flattened)
-            start_tan = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, [0.0, 0.0, 0.0])
-            end_tan = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, [0.0, 0.0, 0.0])
+            start_tan = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, s_vec)
+            end_tan = win32com.client.VARIANT(pythoncom.VT_ARRAY | pythoncom.VT_R8, e_vec)
+            
             return self.model_space.AddSpline(pts_array, start_tan, end_tan)
         except Exception as e:
             print(f"Error in add_spline: {e}")
