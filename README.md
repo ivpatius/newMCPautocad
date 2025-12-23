@@ -34,7 +34,7 @@ To ensure a clean installation, it is recommended to use a Python virtual enviro
 
 ## Prerequisites
 - **AutoCAD**: Must be installed and running during script execution.
-- **Ollama**: Must be installed and reachable (default: `localhost:11434`). Ensure you have a model pulled (e.g., `ollama pull llama3`).
+- **Ollama**: Must be installed and reachable (default: `localhost:11434`). Ensure you have a model pulled (e.g., `ollama pull qwen2.5-coder:7b`).
 
 ## Usage
 
@@ -58,7 +58,7 @@ The executable will be located in the `dist/` folder.
 ### Configuration with .exe
 The compiled `.exe` will look for a `.env` file in the **same directory** where it is being executed. 
 - If no `.env` file is found, the assistant will fall back to its internal defaults:
-    - **OLLAMA_MODEL**: `llama3`
+    - **OLLAMA_MODEL**: `qwen2.5-coder:7b`
     - **LLM_API_URL**: `http://localhost:11434`
 - You can copy your `.env` file into the `dist/` folder alongside the `CAD_AI_Assistant.exe` to customize its behavior.
 
