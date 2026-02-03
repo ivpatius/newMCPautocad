@@ -8,8 +8,8 @@ load_dotenv()
 
 class LLMManager:
     def __init__(self):
-        self.model = os.getenv("OLLAMA_MODEL", "qwen2.5-coder:7b")
-        self.api_url = os.getenv("LLM_API_URL", 'http://localhost:11434')
+        self.model = os.getenv("OLLAMA_MODEL", "qwen3:latest")
+        self.api_url = os.getenv("LLM_API_URL", 'http://10.38.28.7:11434/')
         
         if self.api_url:
             # Cleanup URL if user pasted the endpoint instead of the base host
