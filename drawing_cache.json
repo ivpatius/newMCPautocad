@@ -1,0 +1,2443 @@
+{
+  "last_update": "2026-02-12T10:07:50.358862",
+  "entities": [
+    {
+      "handle": "8448",
+      "object_name": "AcDbBlockReference",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -1.1073290035153812e-12,
+          -1.1073290035153846e-12,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "8449",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -10390.599031208083,
+          -342.17926912533585,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16812",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16813",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -107721.51044690813,
+          39782.989225702855,
+          -106721.51044690813,
+          39782.989225702855,
+          -106721.51044690813,
+          38782.989225702855,
+          -107721.51044690813,
+          38782.989225702855
+        ]
+      }
+    },
+    {
+      "handle": "16814",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -107700.21485812822,
+          39997.62101800801,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16815",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16816",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -115221.51044690813,
+          39782.989225702855,
+          -114221.51044690813,
+          39782.989225702855,
+          -114221.51044690813,
+          38782.989225702855,
+          -115221.51044690813,
+          38782.989225702855
+        ]
+      }
+    },
+    {
+      "handle": "16817",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115102.67205890396,
+          39993.74244360739,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16818",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16819",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -113721.51044690813,
+          39782.989225702855,
+          -112721.51044690813,
+          39782.989225702855,
+          -112721.51044690813,
+          38782.989225702855,
+          -113721.51044690813,
+          38782.989225702855
+        ]
+      }
+    },
+    {
+      "handle": "1681A",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -113969.3020545296,
+          39995.32553097201,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "1681E",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -114015.42756144641,
+          40322.63373494474,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "1681F",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16820",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -110864.2821371567,
+          39782.989225702855,
+          -109864.2821371567,
+          39782.989225702855,
+          -109864.2821371567,
+          38782.989225702855,
+          -110864.2821371567,
+          38782.989225702855
+        ]
+      }
+    },
+    {
+      "handle": "16821",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -110905.38879046321,
+          39993.676116128365,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16822",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16823",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -109364.2821371567,
+          39782.989225702855,
+          -108364.2821371567,
+          39782.989225702855,
+          -108364.2821371567,
+          38782.989225702855,
+          -109364.2821371567,
+          38782.989225702855
+        ]
+      }
+    },
+    {
+      "handle": "16824",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -109320.15334327123,
+          39992.526425632444,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16825",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16826",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -112221.51044690813,
+          39782.989225702855,
+          -111221.51044690813,
+          39782.989225702855,
+          -111221.51044690813,
+          38782.989225702855,
+          -112221.51044690813,
+          38782.989225702855
+        ]
+      }
+    },
+    {
+      "handle": "16827",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -112242.9208979999,
+          39995.91381948427,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16828",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16829",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -115078.73875665956,
+          37457.77105678382,
+          -114078.73875665956,
+          37457.77105678382,
+          -114078.73875665956,
+          36457.77105678382,
+          -115078.73875665956,
+          36457.77105678382
+        ]
+      }
+    },
+    {
+      "handle": "1682A",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "1682B",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -113578.73875665956,
+          37448.95461693837,
+          -112578.73875665956,
+          37448.95461693837,
+          -112578.73875665956,
+          36448.95461693837,
+          -113578.73875665956,
+          36448.95461693837
+        ]
+      }
+    },
+    {
+      "handle": "1682C",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "1682D",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -112078.73875665956,
+          37448.959462272614,
+          -111078.73875665956,
+          37448.959462272614,
+          -111078.73875665956,
+          36448.959462272614,
+          -112078.73875665956,
+          36448.959462272614
+        ]
+      }
+    },
+    {
+      "handle": "1682E",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "1682F",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -110578.73875665956,
+          37448.96430760689,
+          -109578.73875665956,
+          37448.96430760689,
+          -109578.73875665956,
+          36448.96430760689,
+          -110578.73875665956,
+          36448.96430760689
+        ]
+      }
+    },
+    {
+      "handle": "16830",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16831",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -109078.73875665956,
+          37448.95944336959,
+          -108078.73875665956,
+          37448.95944336959,
+          -108078.73875665956,
+          36448.95944336959,
+          -109078.73875665956,
+          36448.95944336959
+        ]
+      }
+    },
+    {
+      "handle": "16832",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16833",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -107578.73875665956,
+          37448.95457913229,
+          -106578.73875665956,
+          37448.95457913229,
+          -106578.73875665956,
+          36448.95457913229,
+          -107578.73875665956,
+          36448.95457913229
+        ]
+      }
+    },
+    {
+      "handle": "16834",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16835",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -106078.73875665956,
+          37448.94971489499,
+          -105078.73875665956,
+          37448.94971489499,
+          -105078.73875665956,
+          36448.94971489499,
+          -106078.73875665956,
+          36448.94971489499
+        ]
+      }
+    },
+    {
+      "handle": "16836",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16837",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -104578.73875665956,
+          37448.949658185855,
+          -103578.73875665956,
+          37448.949658185855,
+          -103578.73875665956,
+          36448.949658185855,
+          -104578.73875665956,
+          36448.949658185855
+        ]
+      }
+    },
+    {
+      "handle": "16838",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16839",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -103078.73875665956,
+          37448.94960147675,
+          -102078.73875665956,
+          37448.94960147675,
+          -102078.73875665956,
+          36448.94960147675,
+          -103078.73875665956,
+          36448.94960147675
+        ]
+      }
+    },
+    {
+      "handle": "1683A",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "1683B",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -101578.73875665953,
+          37448.94943134938,
+          -100578.73875665953,
+          37448.94943134938,
+          -100578.73875665953,
+          36448.94943134938,
+          -101578.73875665953,
+          36448.94943134938
+        ]
+      }
+    },
+    {
+      "handle": "1683C",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "1683D",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -100078.73875665956,
+          37448.949261222035,
+          -99078.73875665956,
+          37448.949261222035,
+          -99078.73875665956,
+          36448.949261222035,
+          -100078.73875665956,
+          36448.949261222035
+        ]
+      }
+    },
+    {
+      "handle": "1683E",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -98474.80864794139,
+          37448.948750839976,
+          -97474.80864794139,
+          37448.948750839976,
+          -97474.80864794139,
+          36448.948750839976,
+          -98474.80864794139,
+          36448.948750839976
+        ]
+      }
+    },
+    {
+      "handle": "1683F",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_штриховка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "16840",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -112102.11277122615,
+          37667.49562132338,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16841",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -110584.4682016258,
+          37668.17544113399,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16842",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -104427.25630302337,
+          37669.93129077376,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16843",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -103014.37352894648,
+          37673.145426918956,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16844",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -109086.0347711512,
+          37669.12653987619,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16845",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -107630.36708769441,
+          37670.78049766846,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16846",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -105910.76051130827,
+          37669.400414778414,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16847",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -101402.46233153396,
+          37670.144160366006,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16848",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -99869.34967089159,
+          37667.18897229186,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "16849",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -98315.38023068459,
+          37671.969127723976,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "1684A",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -114984.44644038862,
+          37681.50624503085,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "1684B",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -113455.91273580282,
+          37666.747570525185,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "1684C",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -110070.17943395785,
+          41396.28813732407,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A27",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115150.49041027867,
+          20907.83642258552,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A29",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115131.79733686964,
+          16889.342673290797,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A2A",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115150.24879387833,
+          20382.649918668132,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A2B",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115148.88078579839,
+          19869.588433490615,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A2C",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115169.1834836877,
+          32328.394305207796,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A2E",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115150.49041027867,
+          27286.742613766895,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A2F",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115168.94186728736,
+          31612.312363494653,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A30",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115167.57385920742,
+          30837.12669392937,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A35",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_5",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          38556.9307629276,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          38556.9307629276,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A36",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_25",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          35048.76797107086,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          35046.41559916521,
+          0.0
+        ]
+      },
+      "length": 22956.28802086639,
+      "angle": 6.28308283539026
+    },
+    {
+      "handle": "17A37",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_8",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          31148.1591131921,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          31148.1591131921,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A38",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_25",
+      "color": 256,
+      "linetype": "пунктирная2",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          22752.30659427303,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          22752.30659427303,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A39",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          39114.27166558351,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A3D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          37662.489049262105,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A41",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          35606.10887372677,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A45",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          34154.326257405366,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A49",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          31705.50001584801,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A4D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          30253.717399526606,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A51",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          29284.233943599553,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A55",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          26897.843636519305,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A59",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          25446.0610201979,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A5D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          23309.64749692894,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A61",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          21857.864880607536,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A65",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          20869.717297563504,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A69",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          20057.47094375253,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A6D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          17863.04621521289,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A71",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          16002.946315100111,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A75",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          13901.655152082545,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A79",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          12449.87253576114,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A7D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -136582.2293309734,
+          41405.90153998004,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A81",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_25",
+      "color": 256,
+      "linetype": "GOST2.303 3",
+      "coordinates": {
+        "start": [
+          -143360.79298872233,
+          9384.515863605651,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          9384.515863605651,
+          0.0
+        ]
+      },
+      "length": 22742.093462905555,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A82",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_25",
+      "color": 256,
+      "linetype": "GOST2.303 4",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          26340.502733863395,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          26340.502733863395,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A83",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_5",
+      "color": 256,
+      "linetype": "GOST2.303 5",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          16630.97814787447,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          16630.97814787447,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A84",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_5",
+      "color": 256,
+      "linetype": "GOST2.303 6",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          17305.70531255698,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          17305.70531255698,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A85",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_25",
+      "color": 256,
+      "linetype": "GOST2.303 8",
+      "coordinates": {
+        "start": [
+          -143360.79298872233,
+          5424.717477784659,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          5424.717477784659,
+          0.0
+        ]
+      },
+      "length": 22742.093462905555,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A86",
+      "object_name": "AcDbLine",
+      "layer": "ОБЩ_Н_линии 0_8",
+      "color": 256,
+      "linetype": "GOST2.303 9",
+      "coordinates": {
+        "start": [
+          -143574.98742615728,
+          13344.314249426636,
+          0.0
+        ],
+        "end": [
+          -120618.69952581677,
+          13344.314249426636,
+          0.0
+        ]
+      },
+      "length": 22956.28790034051,
+      "angle": 0.0
+    },
+    {
+      "handle": "17A88",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -111180.45693124051,
+          22065.445200957067,
+          -115842.06750506966,
+          22065.445200957067,
+          -115842.06750506966,
+          14568.335371310997,
+          -111180.45693124051,
+          14568.335371310997
+        ]
+      }
+    },
+    {
+      "handle": "17A89",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          9971.055684813604,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A8D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          8519.273068492199,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A91",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          6338.8608067576715,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A95",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          4203.333873491196,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A99",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          2255.5193768255413,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "17A9D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          328.48117990211176,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "1D182",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_оси",
+      "color": 256,
+      "linetype": "GOST2.303 5",
+      "coordinates": {
+        "coordinates": [
+          -120618.69952581677,
+          1464.9190919636676,
+          -142860.79298872233,
+          1464.9190919636676,
+          -143360.79298872233,
+          1464.9190919636676
+        ]
+      }
+    },
+    {
+      "handle": "90E35",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115150.49041027867,
+          12056.01259418056,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "90E37",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115131.79733686964,
+          8566.673438541628,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "90E38",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115150.24879387833,
+          11537.387206773099,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "90E39",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -115148.88078579839,
+          10989.932085619337,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "913A1",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -179072.66996740497,
+          39197.7113822222,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9147B",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          38222.693110323395,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9162A",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 7,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "916FB",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          38222.693110323395,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9171E",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          37356.58852609625,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9171F",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 9,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91720",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          37356.58852609625,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91723",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          36490.48394186911,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91724",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 160,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91725",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          36490.48394186911,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91728",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          35624.37935764197,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91729",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 102,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "9172A",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          35624.37935764197,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9172D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          34758.27477341483,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9172E",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 6,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "9172F",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          34758.27477341483,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91732",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          33892.17018918769,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91733",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 34,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91734",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          33892.17018918769,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91819",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          33026.065604960546,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9181A",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 4,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "9181B",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          33026.065604960546,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9181E",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          32159.961020733404,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9181F",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 7,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91820",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          32159.961020733404,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91823",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          31293.856436506263,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91824",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 5,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91825",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          31293.856436506263,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91828",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          30427.75185227912,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91829",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 5,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "9182A",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          30427.75185227912,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9182D",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          29561.64726805198,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9182E",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 1,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "9182F",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          29561.64726805198,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91832",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          28695.54268382484,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91833",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 7,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91834",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          28695.54268382484,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91837",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -177754.05369973608,
+          27829.438099597697,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "91838",
+      "object_name": "AcDbHatch",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 7,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "91839",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Д_легенда",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -180175.5562821508,
+          27829.438099597697,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "9212E",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -57544.02166633244,
+          41968.54272080593,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A2416",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -112167.5375969905,
+          66466.93568596919,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A241A",
+      "object_name": "AcDbRotatedDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A241B",
+      "object_name": "AcDbRotatedDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A241C",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -114078.65785485969,
+          64658.180285353505,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A2420",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -108350.81812139743,
+          64727.42279854868,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A2424",
+      "object_name": "AcDbCircle",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 2,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "center": [
+          -113165.13472873138,
+          58619.08939209313,
+          0.0
+        ]
+      },
+      "radius": 1624.3551571470712,
+      "center": [
+        -113165.13472873138,
+        58619.08939209313,
+        0.0
+      ]
+    },
+    {
+      "handle": "A2425",
+      "object_name": "AcDbRadialDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A2426",
+      "object_name": "AcDbCircle",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 2,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "center": [
+          -113165.13472873138,
+          53507.49943214045,
+          0.0
+        ]
+      },
+      "radius": 1624.3551571470712,
+      "center": [
+        -113165.13472873138,
+        53507.49943214045,
+        0.0
+      ]
+    },
+    {
+      "handle": "A2427",
+      "object_name": "AcDbDiametricDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A242A",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 2,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -114789.48988587846,
+          49815.98393433931,
+          -113861.74937094572,
+          46147.264241199824,
+          -111405.61173669634,
+          49026.08250074681
+        ]
+      }
+    },
+    {
+      "handle": "A242E",
+      "object_name": "AcDbCircle",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 2,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "center": [
+          -106006.19046524953,
+          58619.08939209313,
+          0.0
+        ]
+      },
+      "radius": 1624.3551571470712,
+      "center": [
+        -106006.19046524953,
+        58619.08939209313,
+        0.0
+      ]
+    },
+    {
+      "handle": "A242F",
+      "object_name": "AcDbRadialDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A2430",
+      "object_name": "AcDbCircle",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 2,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "center": [
+          -106006.19046524953,
+          53507.49943214045,
+          0.0
+        ]
+      },
+      "radius": 1624.3551571470712,
+      "center": [
+        -106006.19046524953,
+        53507.49943214045,
+        0.0
+      ]
+    },
+    {
+      "handle": "A2431",
+      "object_name": "AcDbDiametricDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A2B6D",
+      "object_name": "AcDbPolyline",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 2,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "coordinates": [
+          -107630.5456223966,
+          49815.98393433931,
+          -106702.80510746386,
+          46147.264241199824,
+          -104246.66747321449,
+          49026.08250074681
+        ]
+      }
+    },
+    {
+      "handle": "A3288",
+      "object_name": "AcDb2LineAngularDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A32A0",
+      "object_name": "AcDb2LineAngularDimension",
+      "layer": "ОБЩ_Н_размеры",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {}
+    },
+    {
+      "handle": "A3617",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          76336.06910729807,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A3618",
+      "object_name": "AcDbText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143349.8771851209,
+          77007.77131194566,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A361C",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Н_текст",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -143574.98742615728,
+          64450.87519698206,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A3E40",
+      "object_name": "AcDbBlockReference",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -64500.000000000015,
+          37405.03484400618,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A3E41",
+      "object_name": "AcDbBlockReference",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -50000.00000000001,
+          37405.034844006164,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A3E42",
+      "object_name": "AcDbBlockReference",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -65500.0,
+          37405.03484400617,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A4091",
+      "object_name": "AcDbBlockReference",
+      "layer": "ОБЩ_Д_форматы",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -179479.81324351544,
+          -50000.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A4092",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          -179658.04847776482,
+          -48496.83351828647,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A4096",
+      "object_name": "AcDbBlockReference",
+      "layer": "ОБЩ_Д_форматы",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          50000.00000000001,
+          -49999.99999999999,
+          0.0
+        ]
+      }
+    },
+    {
+      "handle": "A4097",
+      "object_name": "AcDbMText",
+      "layer": "ОБЩ_Д_разметка",
+      "color": 256,
+      "linetype": "ByLayer",
+      "coordinates": {
+        "insertion": [
+          47449.86421683128,
+          -48496.83351828647,
+          0.0
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "total_entities": 174,
+    "by_type": {
+      "AcDbBlockReference": 6,
+      "AcDbMText": 9,
+      "AcDbHatch": 31,
+      "AcDbPolyline": 22,
+      "AcDbText": 84,
+      "AcDbLine": 10,
+      "AcDbRotatedDimension": 2,
+      "AcDbCircle": 4,
+      "AcDbRadialDimension": 2,
+      "AcDbDiametricDimension": 2,
+      "AcDb2LineAngularDimension": 2
+    },
+    "by_layer": {
+      "ОБЩ_Д_разметка": 15,
+      "ОБЩ_Д_штриховка": 36,
+      "ОБЩ_Н_текст": 62,
+      "ОБЩ_Н_линии 0_5": 3,
+      "ОБЩ_Н_линии 0_25": 5,
+      "ОБЩ_Н_линии 0_8": 2,
+      "ОБЩ_Д_оси": 1,
+      "ОБЩ_Д_легенда": 40,
+      "ОБЩ_Н_размеры": 8,
+      "ОБЩ_Д_форматы": 2
+    },
+    "bounds": {
+      "min": [
+        0.0,
+        0.0
+      ],
+      "max": [
+        841.0,
+        594.0
+      ]
+    }
+  }
+}

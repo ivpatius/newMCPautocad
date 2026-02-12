@@ -1,9 +1,13 @@
-def main():
-    import sys
-    import os
-    import json
-    import shutil
+#!/usr/bin/env python3
+"""
+Main entry point for AutoCAD AI Assistant.
+"""
+import sys
+import os
+import json
+import shutil
 
+def main():
     # Ensure .env exists
     if not os.path.exists(".env") and os.path.exists(".env.example"):
         print("[*] .env file not found. Creating from .env.example...")
@@ -11,6 +15,7 @@ def main():
 
     try:
         from src.cad.autocad_client import AutoCADClient
+        from src.cad.drawing_cache import DrawingCache
         from src.llm.llm_manager import LLMManager
         import win32com.client
         import pythoncom
@@ -20,43 +25,60 @@ def main():
         raise e
 
     print("--- AutoCAD AI Assistant ---")
-    
+
     cad = AutoCADClient()
     if not cad.connect():
         print("Could not connect to AutoCAD. Please make sure it is open.")
         # sys.exit(1) # Uncomment for production
 
+    # Инициализация кэша чертежа
+    drawing_cache = DrawingCache(cad)
+
+    # Первичное обновление кэша после подключения
+    print("Первичное обновление кэша чертежа...")
+    drawing_cache.update_cache()
+
     llm = LLMManager()
-    
+
     print(f"[*] Configuration Loaded:")
     print(f"    - Model: {llm.model}")
     print(f"    - API URL: {llm.api_url or 'Ollama Default (localhost:11434)'}")
     print(f"    - CAD: AutoCAD (via COM)")
-    
+
     while True:
         try:
             user_input = input("\n[CAD AI] > ")
             if user_input.lower() in ['exit', 'quit']:
                 break
-                
+
+            # ----- Команда для ручного обновления кэша -----
+            if user_input.lower() in ["обнови кэш", "update cache", "refresh"]:
+                drawing_cache.update_cache()
+                continue
+
+            # ----- Автоматическое обновление кэша перед каждым запросом -----
+            print("Обновление данных чертежа...")
+            drawing_cache.update_cache()
+
             print("Processing request...")
             tool_calls, ai_content = llm.process_prompt(user_input)
-            
+
             if not tool_calls:
                 if ai_content:
                     print(f"\nAI: {ai_content}")
                 else:
                     print("LLM did not identify any CAD commands.")
                 continue
-                
+
             print(f"Total steps to execute: {len(tool_calls)}")
             for i, call in enumerate(tool_calls, 1):
                 func_name = call['function']['name']
                 args = call['function']['arguments']
-                
+
                 print(f"[Step {i}/{len(tool_calls)}] Executing: {func_name}")
-                
+
                 try:
+                    # --- Существующие инструменты AutoCAD ---
                     if func_name == 'draw_line':
                         cad.add_line(tuple(args['start']), tuple(args['end']))
                     elif func_name == 'draw_circle':
@@ -64,11 +86,12 @@ def main():
                     elif func_name == 'draw_point':
                         cad.add_point(tuple(args['point']))
                     elif func_name == 'draw_arc':
-                        cad.add_arc(tuple(args['center']), args['radius'], args['start_angle'], args['end_angle'])
+                        cad.add_arc(tuple(args['center']), args['radius'],
+                                   args['start_angle'], args['end_angle'])
                     elif func_name == 'draw_spline':
                         cad.add_spline(
-                            args['points'], 
-                            args.get('start_angle', 15.0), 
+                            args['points'],
+                            args.get('start_angle', 15.0),
                             args.get('end_angle', 15.0)
                         )
                     elif func_name == 'trim_entities':
@@ -106,11 +129,19 @@ def main():
                     elif func_name == 'draw_cloud_radials':
                         cad.cloud_radials(args['center'], args['radii'], args.get('angle_increment', 20.0))
                         print(f"[*] Cloud radial pattern created at {args['center']} with {len(args['radii'])} lines.")
+
+                    # --- НОВЫЙ ИНСТРУМЕНТ: получение информации из чертежа ---
+                    elif func_name == 'get_drawing_info':
+                        result = LLMManager.get_drawing_info(**args)
+                        print("\n--- Информация из чертежа ---")
+                        print(result)
+                        print("-----------------------------\n")
+
                     else:
                         print(f"Unsupported command: {func_name}")
                 except Exception as step_error:
                     print(f"Error in step {i}: {step_error}")
-                    
+
         except KeyboardInterrupt:
             break
         except Exception as e:
@@ -121,10 +152,10 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         import traceback
-        print("\n" + "="*50)
+        print("\n" + "=" * 50)
         print("CRITICAL ERROR DURING EXECUTION:")
         traceback.print_exc()
-        print("="*50)
+        print("=" * 50)
         input("\nPress Enter to exit...")
     except KeyboardInterrupt:
         pass

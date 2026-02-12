@@ -1,4 +1,5 @@
 import json
+from ..cad.drawing_cache import DrawingCache
 import os
 import ollama
 from dotenv import load_dotenv
@@ -185,6 +186,32 @@ class LLMManager:
                 },
             },
             {
+                "type": "function",
+                "function": {
+                    "name": "get_drawing_info",
+                    "description": "Получить информацию об объектах в открытом чертеже AutoCAD. Используйте 'summary' для статистики, 'all_entities' для списка объектов, 'filtered' для фильтрации по типу или слою.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query_type": {
+                                "type": "string",
+                                "enum": ["summary", "all_entities", "filtered"],
+                                "description": "Тип запроса к чертежу"
+                            },
+                            "filter_type": {
+                                "type": "string",
+                                "description": "Фильтр по типу объекта (например, 'AcDbLine')"
+                            },
+                            "layer": {
+                                "type": "string",
+                                "description": "Фильтр по имени слоя"
+                            }
+                        },
+                        "required": ["query_type"]
+                    }
+                }
+            },
+            {
                 'type': 'function',
                 'function': {
                     'name': 'change_layer_color',
@@ -240,6 +267,41 @@ class LLMManager:
             }
         ]
 
+    def get_drawing_info(query_type: str = "summary", filter_type: str = None, layer: str = None) -> str:
+        """
+        Получить информацию из кэша чертежа AutoCAD.
+
+        Args:
+            query_type: 'summary', 'all_entities', 'filtered'
+            filter_type: фильтр по ObjectName (например 'AcDbLine')
+            layer: фильтр по слою
+        """
+        cache = DrawingCache.load_cache()
+        if not cache["last_update"]:
+            return "Кэш чертежа пуст. Сначала выполните команду 'update_cache'."
+
+        if query_type == "summary":
+            return json.dumps(cache["summary"], indent=2, ensure_ascii=False)
+        elif query_type == "all_entities":
+            # Возвращаем урезанные данные (только тип, слой, handle) для избежания переполнения
+            simplified = []
+            for ent in cache["entities"][:100]:
+                simplified.append({
+                    "type": ent["object_name"],
+                    "layer": ent["layer"],
+                    "handle": ent["handle"]
+                })
+            return json.dumps(simplified, indent=2, ensure_ascii=False)
+        elif query_type == "filtered":
+            filtered = [
+                e for e in cache["entities"]
+                if (not filter_type or e["object_name"] == filter_type) and
+                   (not layer or e["layer"] == layer)
+            ]
+            return json.dumps(filtered[:50], indent=2, ensure_ascii=False)
+        else:
+            return "Неверный query_type. Используйте summary, all_entities или filtered."
+
     def process_prompt(self, prompt):
         """Send prompt to LLM and get tool calls, encouraging sequential reasoning."""
         messages = [
@@ -259,11 +321,11 @@ class LLMManager:
             messages=messages,
             tools=self.get_tool_definitions(),
         )
-        
+
         message = response.get('message', {})
         content = message.get('content', '')
         tool_calls = message.get('tool_calls', [])
-        
+
         # Fallback: if no structured tool calls, check if content looks like one
         if not tool_calls and content:
             stripped_content = content.strip()
