@@ -1,30 +1,30 @@
 import json
-from ..cad.drawing_cache import DrawingCache
 import os
 import ollama
 from dotenv import load_dotenv
+from ..cad.drawing_cache import DrawingCache
 
 # Load environment variables
 load_dotenv()
 
+
 class LLMManager:
     def __init__(self):
         self.model = os.getenv("OLLAMA_MODEL", "qwen3:latest")
-        self.api_url = os.getenv("LLM_API_URL", 'http://10.38.28.7:11434/')
-        
+        self.api_url = os.getenv("LLM_API_URL", 'http://localhost:11434/')
+
         if self.api_url:
-            # Cleanup URL if user pasted the endpoint instead of the base host
             self.api_url = self.api_url.strip().rstrip('/')
             for suffix in ['/api/generate', '/api/chat', '/api']:
                 if self.api_url.endswith(suffix):
                     self.api_url = self.api_url[:-len(suffix)]
-            
             self.client = ollama.Client(host=self.api_url)
         else:
             self.client = ollama
 
     def get_tool_definitions(self):
         return [
+            # ----- ИНСТРУМЕНТЫ РИСОВАНИЯ И РЕДАКТИРОВАНИЯ -----
             {
                 'type': 'function',
                 'function': {
@@ -95,17 +95,17 @@ class LLMManager:
                         'type': 'object',
                         'properties': {
                             'points': {
-                                'type': 'array', 
-                                'items': {'type': 'array', 'items': {'type': 'number'}}, 
+                                'type': 'array',
+                                'items': {'type': 'array', 'items': {'type': 'number'}},
                                 'description': 'List of points [[x,y,z], [x,y,z], ...]'
                             },
                             'start_angle': {
-                                'type': 'number', 
+                                'type': 'number',
                                 'description': 'Start tangent angle in degrees. Default is 15.',
                                 'default': 15.0
                             },
                             'end_angle': {
-                                'type': 'number', 
+                                'type': 'number',
                                 'description': 'End tangent angle in degrees. Default is 15.',
                                 'default': 15.0
                             },
@@ -125,6 +125,7 @@ class LLMManager:
                     },
                 },
             },
+            # ----- ИНСТРУМЕНТЫ УПРАВЛЕНИЯ СЛОЯМИ -----
             {
                 'type': 'function',
                 'function': {
@@ -161,7 +162,7 @@ class LLMManager:
                         'properties': {
                             'layer_name': {'type': 'string', 'description': 'The name of the new layer'},
                             'color': {
-                                'type': 'integer', 
+                                'type': 'integer',
                                 'description': 'AutoCAD Color Index (ACI). 1=Red, 2=Yellow, 3=Green, 4=Cyan, 5=Blue, 6=Magenta, 7=White/Black.',
                                 'default': 7
                             },
@@ -186,32 +187,6 @@ class LLMManager:
                 },
             },
             {
-                "type": "function",
-                "function": {
-                    "name": "get_drawing_info",
-                    "description": "Получить информацию об объектах в открытом чертеже AutoCAD. Используйте 'summary' для статистики, 'all_entities' для списка объектов, 'filtered' для фильтрации по типу или слою.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "query_type": {
-                                "type": "string",
-                                "enum": ["summary", "all_entities", "filtered"],
-                                "description": "Тип запроса к чертежу"
-                            },
-                            "filter_type": {
-                                "type": "string",
-                                "description": "Фильтр по типу объекта (например, 'AcDbLine')"
-                            },
-                            "layer": {
-                                "type": "string",
-                                "description": "Фильтр по имени слоя"
-                            }
-                        },
-                        "required": ["query_type"]
-                    }
-                }
-            },
-            {
                 'type': 'function',
                 'function': {
                     'name': 'change_layer_color',
@@ -221,7 +196,7 @@ class LLMManager:
                         'properties': {
                             'layer_name': {'type': 'string', 'description': 'The name of the layer'},
                             'color': {
-                                'type': 'integer', 
+                                'type': 'integer',
                                 'description': 'AutoCAD Color Index (ACI). 1=Red, 2=Yellow, 3=Green, 4=Cyan, 5=Blue, 6=Magenta, 7=White/Black.'
                             },
                         },
@@ -229,6 +204,7 @@ class LLMManager:
                     },
                 },
             },
+            # ----- СПЕЦИАЛЬНЫЕ ИНСТРУМЕНТЫ -----
             {
                 'type': 'function',
                 'function': {
@@ -239,7 +215,8 @@ class LLMManager:
                         'properties': {
                             'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
                             'radius': {'type': 'number'},
-                            'angle_increment': {'type': 'number', 'description': 'Angle in degrees between each radial line'},
+                            'angle_increment': {'type': 'number',
+                                                'description': 'Angle in degrees between each radial line'},
                         },
                         'required': ['center', 'radius', 'angle_increment'],
                     },
@@ -254,9 +231,10 @@ class LLMManager:
                         'type': 'object',
                         'properties': {
                             'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
-                            'radii': {'type': 'array', 'items': {'type': 'number'}, 'description': 'List of lengths for each radial line'},
+                            'radii': {'type': 'array', 'items': {'type': 'number'},
+                                      'description': 'List of lengths for each radial line'},
                             'angle_increment': {
-                                'type': 'number', 
+                                'type': 'number',
                                 'description': 'Angle in degrees between each radial line',
                                 'default': 20.0
                             },
@@ -264,58 +242,322 @@ class LLMManager:
                         'required': ['center', 'radii'],
                     },
                 },
+            },
+            # ----- ИНСТРУМЕНТ ЗАПРОСА КЭША (С АГРЕГАЦИЕЙ) -----
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_drawing_info",
+                    "description": "Получить информацию из ПОЛНОГО кэша чертежа AutoCAD (без подключения к CAD). Позволяет получить сводку, список объектов, блоков, текста, размеров, слоёв, системных переменных, выполнять фильтрацию, а также вычислять статистику (сумма, среднее, минимум, максимум) по числовым полям.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "query_type": {
+                                "type": "string",
+                                "enum": [
+                                    "summary",
+                                    "entities",
+                                    "blocks",
+                                    "texts",
+                                    "dimensions",
+                                    "layers",
+                                    "linetypes",
+                                    "text_styles",
+                                    "dim_styles",
+                                    "block_definitions",
+                                    "system_vars",
+                                    "by_handle",
+                                    "filtered",
+                                    "aggregate"
+                                ],
+                                "description": "Тип запроса: summary (сводка), entities (все объекты), blocks (вхождения блоков), texts (текст), dimensions (размеры), layers (слои), linetypes (типы линий), text_styles (текстовые стили), dim_styles (размерные стили), block_definitions (определения блоков), system_vars (системные переменные), by_handle (поиск по handle), filtered (фильтрация объектов), aggregate (статистика по числовому полю)."
+                            },
+                            "entity_type": {
+                                "type": "string",
+                                "description": "Фильтр по ObjectName (например 'AcDbLine', 'AcDbCircle', 'AcDbBlockReference'). Используется с query_type='entities', 'filtered' или 'aggregate'."
+                            },
+                            "layer": {
+                                "type": "string",
+                                "description": "Фильтр по имени слоя."
+                            },
+                            "handle": {
+                                "type": "string",
+                                "description": "Конкретный handle объекта. Используется с query_type='by_handle'."
+                            },
+                            "block_name": {
+                                "type": "string",
+                                "description": "Фильтр по имени блока (содержит подстроку). Используется с query_type='blocks'."
+                            },
+                            "property_filter": {
+                                "type": "object",
+                                "description": "Сложный фильтр по свойствам. Пример: {'field': 'length', 'operator': '>', 'value': 100}. Поддерживаемые операторы: '==', '>', '<', '>=', '<=', 'contains' (для строк).",
+                                "properties": {
+                                    "field": {"type": "string"},
+                                    "operator": {
+                                        "type": "string",
+                                        "enum": ["==", ">", "<", ">=", "<=", "contains"]
+                                    },
+                                    "value": {"type": ["number", "string", "boolean"]}
+                                }
+                            },
+                            "include_details": {
+                                "type": "boolean",
+                                "description": "Если True, возвращает полные свойства объектов. Если False (по умолчанию) — краткую информацию (handle, тип, слой)."
+                            },
+                            "aggregate": {
+                                "type": "object",
+                                "description": "Параметры для агрегации (использовать с query_type='aggregate'). Пример: {'field': 'length', 'function': 'avg'}. Поддерживаемые функции: 'sum', 'avg', 'min', 'max', 'count'.",
+                                "properties": {
+                                    "field": {"type": "string",
+                                              "description": "Числовое поле для агрегации (например 'length', 'radius', 'area')."},
+                                    "function": {
+                                        "type": "string",
+                                        "enum": ["sum", "avg", "min", "max", "count"],
+                                        "description": "Агрегатная функция."
+                                    }
+                                },
+                                "required": ["field", "function"]
+                            }
+                        },
+                        "required": ["query_type"]
+                    }
+                }
             }
         ]
 
-    def get_drawing_info(query_type: str = "summary", filter_type: str = None, layer: str = None) -> str:
+    @staticmethod
+    def get_drawing_info(
+            query_type: str = "summary",
+            entity_type: str = None,
+            layer: str = None,
+            handle: str = None,
+            block_name: str = None,
+            property_filter: dict = None,
+            include_details: bool = False,
+            aggregate: dict = None
+    ) -> str:
         """
-        Получить информацию из кэша чертежа AutoCAD.
-
-        Args:
-            query_type: 'summary', 'all_entities', 'filtered'
-            filter_type: фильтр по ObjectName (например 'AcDbLine')
-            layer: фильтр по слою
+        Получить информацию из ПОЛНОГО кэша чертежа AutoCAD (без подключения к CAD).
         """
         cache = DrawingCache.load_cache()
-        if not cache["last_update"]:
-            return "Кэш чертежа пуст. Сначала выполните команду 'update_cache'."
+        if cache is None:
+            return "❌ Кэш чертежа не найден. Сначала выполните команду 'full_cache'."
 
+        # ----- СВОДКА -----
         if query_type == "summary":
             return json.dumps(cache["summary"], indent=2, ensure_ascii=False)
-        elif query_type == "all_entities":
-            # Возвращаем урезанные данные (только тип, слой, handle) для избежания переполнения
-            simplified = []
-            for ent in cache["entities"][:100]:
-                simplified.append({
-                    "type": ent["object_name"],
-                    "layer": ent["layer"],
-                    "handle": ent["handle"]
-                })
-            return json.dumps(simplified, indent=2, ensure_ascii=False)
-        elif query_type == "filtered":
-            filtered = [
-                e for e in cache["entities"]
-                if (not filter_type or e["object_name"] == filter_type) and
-                   (not layer or e["layer"] == layer)
-            ]
-            return json.dumps(filtered[:50], indent=2, ensure_ascii=False)
-        else:
-            return "Неверный query_type. Используйте summary, all_entities или filtered."
+
+        # ----- СИСТЕМНЫЕ ПЕРЕМЕННЫЕ -----
+        if query_type == "system_vars":
+            return json.dumps(cache["system_variables"], indent=2, ensure_ascii=False)
+
+        # ----- СЛОИ -----
+        if query_type == "layers":
+            data = cache["layers"]
+            if include_details:
+                return json.dumps(data[:100], indent=2, ensure_ascii=False, default=str)
+            else:
+                simplified = [
+                    {"name": l["name"], "on": l["on"], "frozen": l["frozen"], "locked": l["locked"]}
+                    for l in data[:100]
+                ]
+                return json.dumps(simplified, indent=2, ensure_ascii=False)
+
+        # ----- ТИПЫ ЛИНИЙ -----
+        if query_type == "linetypes":
+            data = cache["linetypes"]
+            return json.dumps(data[:100], indent=2, ensure_ascii=False, default=str)
+
+        # ----- ТЕКСТОВЫЕ СТИЛИ -----
+        if query_type == "text_styles":
+            data = cache["text_styles"]
+            return json.dumps(data[:100], indent=2, ensure_ascii=False, default=str)
+
+        # ----- РАЗМЕРНЫЕ СТИЛИ -----
+        if query_type == "dim_styles":
+            data = cache["dim_styles"]
+            return json.dumps(data[:100], indent=2, ensure_ascii=False, default=str)
+
+        # ----- ОПРЕДЕЛЕНИЯ БЛОКОВ -----
+        if query_type == "block_definitions":
+            data = cache["blocks"]
+            return json.dumps(data[:100], indent=2, ensure_ascii=False, default=str)
+
+        # ----- ВХОЖДЕНИЯ БЛОКОВ -----
+        if query_type == "blocks":
+            data = cache["block_references"]
+            if block_name:
+                data = [b for b in data if block_name.lower() in b["name"].lower()]
+            if layer:
+                data = [b for b in data if b["layer"] == layer]
+            if include_details:
+                return json.dumps(data[:50], indent=2, ensure_ascii=False, default=str)
+            else:
+                simplified = []
+                for b in data[:100]:
+                    simp = {"handle": b["handle"], "name": b["name"], "layer": b["layer"]}
+                    if b.get("attributes"):
+                        simp["attributes"] = [{"tag": a["tag"], "text": a["text"][:30]} for a in b["attributes"][:3]]
+                    simplified.append(simp)
+                return json.dumps(simplified, indent=2, ensure_ascii=False)
+
+        # ----- ТЕКСТЫ -----
+        if query_type == "texts":
+            data = cache["texts"]
+            if layer:
+                data = [t for t in data if t["layer"] == layer]
+            if property_filter and property_filter.get("field") == "text" and property_filter.get(
+                    "operator") == "contains":
+                val = property_filter["value"].lower()
+                data = [t for t in data if val in t["text"].lower()]
+            if not include_details:
+                simplified = [
+                    {"handle": t["handle"], "text": t["text"][:50], "layer": t["layer"]}
+                    for t in data[:100]
+                ]
+                return json.dumps(simplified, indent=2, ensure_ascii=False)
+            else:
+                return json.dumps(data[:50], indent=2, ensure_ascii=False, default=str)
+
+        # ----- РАЗМЕРЫ -----
+        if query_type == "dimensions":
+            data = cache["dimensions"]
+            if layer:
+                data = [d for d in data if d["layer"] == layer]
+            if not include_details:
+                simplified = [
+                    {"handle": d["handle"], "measurement": d["measurement"], "layer": d["layer"]}
+                    for d in data[:100]
+                ]
+                return json.dumps(simplified, indent=2, ensure_ascii=False)
+            else:
+                return json.dumps(data[:50], indent=2, ensure_ascii=False, default=str)
+
+        # ----- ОБЪЕКТЫ (ENTITY) -----
+        if query_type in ["entities", "filtered"]:
+            data = cache["entities"]
+            if entity_type:
+                data = [e for e in data if e["object_name"] == entity_type]
+            if layer:
+                data = [e for e in data if e["layer"] == layer]
+            if property_filter:
+                field = property_filter.get("field")
+                op = property_filter.get("operator", "==")
+                val = property_filter.get("value")
+                if field and val is not None:
+                    if op == "==":
+                        data = [e for e in data if e.get(field) == val]
+                    elif op == ">":
+                        data = [e for e in data if e.get(field) is not None and e[field] > val]
+                    elif op == "<":
+                        data = [e for e in data if e.get(field) is not None and e[field] < val]
+                    elif op == ">=":
+                        data = [e for e in data if e.get(field) is not None and e[field] >= val]
+                    elif op == "<=":
+                        data = [e for e in data if e.get(field) is not None and e[field] <= val]
+                    elif op == "contains" and isinstance(val, str):
+                        data = [e for e in data if e.get(field) and val.lower() in str(e[field]).lower()]
+            if not include_details:
+                simplified = [
+                    {"handle": e["handle"], "type": e["object_name"], "layer": e["layer"]}
+                    for e in data[:100]
+                ]
+                return json.dumps(simplified, indent=2, ensure_ascii=False)
+            else:
+                return json.dumps(data[:50], indent=2, ensure_ascii=False, default=str)
+
+        # ----- АГРЕГАЦИЯ (СТАТИСТИКА) -----
+        if query_type == "aggregate":
+            if not aggregate or "field" not in aggregate or "function" not in aggregate:
+                return "❌ Для query_type='aggregate' необходимо указать aggregate.field и aggregate.function."
+
+            # Получаем данные так же, как для entities
+            data = cache["entities"]
+            if entity_type:
+                data = [e for e in data if e["object_name"] == entity_type]
+            if layer:
+                data = [e for e in data if e["layer"] == layer]
+            if property_filter:
+                # (повторяем логику фильтрации)
+                field = property_filter.get("field")
+                op = property_filter.get("operator", "==")
+                val = property_filter.get("value")
+                if field and val is not None:
+                    if op == "==":
+                        data = [e for e in data if e.get(field) == val]
+                    elif op == ">":
+                        data = [e for e in data if e.get(field) is not None and e[field] > val]
+                    elif op == "<":
+                        data = [e for e in data if e.get(field) is not None and e[field] < val]
+                    elif op == ">=":
+                        data = [e for e in data if e.get(field) is not None and e[field] >= val]
+                    elif op == "<=":
+                        data = [e for e in data if e.get(field) is not None and e[field] <= val]
+                    elif op == "contains" and isinstance(val, str):
+                        data = [e for e in data if e.get(field) and val.lower() in str(e[field]).lower()]
+
+            # Извлекаем значения поля
+            values = []
+            for e in data:
+                val = e.get(aggregate["field"])
+                if isinstance(val, (int, float)):
+                    values.append(val)
+
+            if not values:
+                return f"❌ Нет числовых значений для поля '{aggregate['field']}' после фильтрации."
+
+            func = aggregate["function"]
+            if func == "sum":
+                result = sum(values)
+            elif func == "avg":
+                result = sum(values) / len(values)
+            elif func == "min":
+                result = min(values)
+            elif func == "max":
+                result = max(values)
+            elif func == "count":
+                result = len(values)
+            else:
+                return f"❌ Неизвестная функция агрегации: {func}"
+
+            return json.dumps({
+                "field": aggregate["field"],
+                "function": func,
+                "result": result,
+                "count": len(values)
+            }, indent=2, ensure_ascii=False)
+
+        # ----- ПОИСК ПО HANDLE -----
+        if query_type == "by_handle" and handle:
+            for category in ["entities", "block_references", "texts", "dimensions"]:
+                for item in cache.get(category, []):
+                    if item["handle"] == handle:
+                        return json.dumps(item, indent=2, ensure_ascii=False, default=str)
+            return f"❌ Объект с handle {handle} не найден."
+
+        return "❌ Неверный query_type или параметры."
 
     def process_prompt(self, prompt):
-        """Send prompt to LLM and get tool calls, encouraging sequential reasoning."""
+        """Отправляет запрос в LLM и возвращает tool_calls и текстовый ответ."""
         messages = [
             {
-                'role': 'system', 
+                'role': 'system',
                 'content': (
-                    'You are an expert AutoCAD assistant. Use the provided tools to fulfill the user request. '
-                    'IMPORTANT: If the user asks to draw a circle but does not provide the center coordinates or the radius, '
-                    'DO NOT call the tool. Instead, respond with a polite text message asking the user for the missing information.'
+                    'You are an expert AutoCAD assistant. Use the provided tools to fulfill the user request.\n'
+                    'IMPORTANT INSTRUCTIONS:\n'
+                    '1. For queries about the drawing content (objects, blocks, layers, etc.), ALWAYS use the "get_drawing_info" tool.\n'
+                    '2. If the user asks for **analytical/statistical** information (average, sum, minimum, maximum, total count, etc.), '
+                    'you MUST use query_type="aggregate" with the appropriate field and function. Do NOT just list objects.\n'
+                    '   Example: "average length of lines" → aggregate={"field": "length", "function": "avg"}, entity_type="AcDbLine".\n'
+                    '   Example: "total area of circles" → aggregate={"field": "area", "function": "sum"}, entity_type="AcDbCircle".\n'
+                    '3. If the user asks to list/find objects, use query_type="entities" or "filtered" with appropriate filters.\n'
+                    '4. If the user asks in Russian, answer in Russian; if in English, answer in English.\n'
+                    '5. Do not guess or make up data – rely on the cache.'
                 )
             },
             {'role': 'user', 'content': prompt}
         ]
-        
+
         response = self.client.chat(
             model=self.model,
             messages=messages,
@@ -326,34 +568,36 @@ class LLMManager:
         content = message.get('content', '')
         tool_calls = message.get('tool_calls', [])
 
-        # Fallback: if no structured tool calls, check if content looks like one
+        # Fallback для старых моделей
         if not tool_calls and content:
-            stripped_content = content.strip()
-            if stripped_content.startswith('{') and stripped_content.endswith('}'):
+            stripped = content.strip()
+            if stripped.startswith('{') and stripped.endswith('}'):
                 try:
-                    data = json.loads(stripped_content)
+                    data = json.loads(stripped)
                     if 'name' in data and 'arguments' in data:
                         tool_calls = [{'function': data}]
-                        content = "" # Clear content if it was actually a tool call
+                        content = ""
                 except:
                     pass
-            elif stripped_content.startswith('[') and stripped_content.endswith(']'):
+            elif stripped.startswith('[') and stripped.endswith(']'):
                 try:
-                    data = json.loads(stripped_content)
+                    data = json.loads(stripped)
                     if isinstance(data, list) and len(data) > 0:
-                        potential_calls = []
+                        calls = []
                         for item in data:
                             if isinstance(item, dict) and 'name' in item and 'arguments' in item:
-                                potential_calls.append({'function': item})
-                        if potential_calls:
-                            tool_calls = potential_calls
-                            content = "" # Clear content
+                                calls.append({'function': item})
+                        if calls:
+                            tool_calls = calls
+                            content = ""
                 except:
                     pass
 
         return tool_calls, content
 
+
 if __name__ == "__main__":
     manager = LLMManager()
-    calls = manager.process_prompt("Draw a line from 0,0 to 10,10 and a circle at 5,5 with radius 2")
-    print(json.dumps(calls, indent=2))
+    calls, content = manager.process_prompt("Сколько линий в чертеже?")
+    print("Tool calls:", json.dumps(calls, indent=2))
+    print("Content:", content)
