@@ -205,121 +205,93 @@ class LLMManager:
                 },
             },
             # ----- СПЕЦИАЛЬНЫЕ ИНСТРУМЕНТЫ -----
+            # Найдите определение инструмента get_drawing_info и замените его description на:
+
             {
                 'type': 'function',
                 'function': {
-                    'name': 'draw_radials',
-                    'description': 'Draw a circle and a series of radial lines clockwise starting from the top.',
+                    'name': 'get_drawing_info',
+                    'description': '''
+                    Получает информацию из ПОЛНОГО кэша чертежа AutoCAD.
+
+                    🔹 ВАЖНО: Всегда анализируй данные и отвечай на естественном языке.
+
+                    ❌ НЕ ДЕЛАЙ:
+                    - Не возвращай сырой JSON пользователю
+                    - Не перечисляй объекты списком без группировки
+
+                    ✅ ДЕЛАЙ:
+                    1. Группируй результаты по:
+                       • функциональным категориям (конструкции, аннотации, инженерия)
+                       • материалам (если есть штриховки)
+                       • слоям (с семантическим описанием)
+
+                    2. Для аналитических запросов используй query_type="aggregate":
+                       • "общая площадь штриховок" → aggregate={field:"area", function:"sum"}, entity_type:"AcDbHatch"
+                       • "средняя длина линий на слое АР_стены" → aggregate={field:"length", function:"avg"}, layer:"АР_стены"
+
+                    3. Если найдены штриховки — укажи предполагаемые материалы:
+                       • ANSI37 → бетон, AR-CONC → железобетон, AR-BRSTD → кирпич
+
+                    4. Если запрошен список объектов — верни не более 10 примеров + сводку:
+                       "Найдено 45 полилиний. Примеры: 3 на слое 'АР_стены' (контуры стен), 2 на 'СО_оси' (разбивка)..."
+
+                    5. Используй поле semantic.layer_description для понятных названий слоёв.
+
+                    Доступные query_type: summary, entities, blocks, texts, dimensions, layers, 
+                    filtered, aggregate, by_handle.
+                    ''',
                     'parameters': {
                         'type': 'object',
                         'properties': {
-                            'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
-                            'radius': {'type': 'number'},
-                            'angle_increment': {'type': 'number',
-                                                'description': 'Angle in degrees between each radial line'},
-                        },
-                        'required': ['center', 'radius', 'angle_increment'],
-                    },
-                },
-            },
-            {
-                'type': 'function',
-                'function': {
-                    'name': 'draw_cloud_radials',
-                    'description': 'Draw a series of radial lines with different lengths clockwise starting from the top.',
-                    'parameters': {
-                        'type': 'object',
-                        'properties': {
-                            'center': {'type': 'array', 'items': {'type': 'number'}, 'description': '[x, y, z]'},
-                            'radii': {'type': 'array', 'items': {'type': 'number'},
-                                      'description': 'List of lengths for each radial line'},
-                            'angle_increment': {
-                                'type': 'number',
-                                'description': 'Angle in degrees between each radial line',
-                                'default': 20.0
+                            'query_type': {
+                                'type': 'string',
+                                'enum': ["summary", "entities", "blocks", "texts", "dimensions",
+                                         "layers", "linetypes", "text_styles", "dim_styles",
+                                         "block_definitions", "system_vars", "by_handle",
+                                         "filtered", "aggregate"],
+                                'description': 'Тип запроса'
                             },
-                        },
-                        'required': ['center', 'radii'],
-                    },
-                },
-            },
-            # ----- ИНСТРУМЕНТ ЗАПРОСА КЭША (С АГРЕГАЦИЕЙ) -----
-            {
-                "type": "function",
-                "function": {
-                    "name": "get_drawing_info",
-                    "description": "Получить информацию из ПОЛНОГО кэша чертежа AutoCAD (без подключения к CAD). Позволяет получить сводку, список объектов, блоков, текста, размеров, слоёв, системных переменных, выполнять фильтрацию, а также вычислять статистику (сумма, среднее, минимум, максимум) по числовым полям.",
-                    "parameters": {
-                        "type": "object",
-                        "properties": {
-                            "query_type": {
-                                "type": "string",
-                                "enum": [
-                                    "summary",
-                                    "entities",
-                                    "blocks",
-                                    "texts",
-                                    "dimensions",
-                                    "layers",
-                                    "linetypes",
-                                    "text_styles",
-                                    "dim_styles",
-                                    "block_definitions",
-                                    "system_vars",
-                                    "by_handle",
-                                    "filtered",
-                                    "aggregate"
-                                ],
-                                "description": "Тип запроса: summary (сводка), entities (все объекты), blocks (вхождения блоков), texts (текст), dimensions (размеры), layers (слои), linetypes (типы линий), text_styles (текстовые стили), dim_styles (размерные стили), block_definitions (определения блоков), system_vars (системные переменные), by_handle (поиск по handle), filtered (фильтрация объектов), aggregate (статистика по числовому полю)."
+                            'entity_type': {
+                                'type': 'string',
+                                'description': 'Фильтр по ObjectName (AcDbLine, AcDbCircle...)'
                             },
-                            "entity_type": {
-                                "type": "string",
-                                "description": "Фильтр по ObjectName (например 'AcDbLine', 'AcDbCircle', 'AcDbBlockReference'). Используется с query_type='entities', 'filtered' или 'aggregate'."
+                            'layer': {
+                                'type': 'string',
+                                'description': 'Фильтр по имени слоя'
                             },
-                            "layer": {
-                                "type": "string",
-                                "description": "Фильтр по имени слоя."
+                            'handle': {
+                                'type': 'string',
+                                'description': 'Конкретный handle объекта'
                             },
-                            "handle": {
-                                "type": "string",
-                                "description": "Конкретный handle объекта. Используется с query_type='by_handle'."
+                            'block_name': {
+                                'type': 'string',
+                                'description': 'Фильтр по имени блока'
                             },
-                            "block_name": {
-                                "type": "string",
-                                "description": "Фильтр по имени блока (содержит подстроку). Используется с query_type='blocks'."
-                            },
-                            "property_filter": {
-                                "type": "object",
-                                "description": "Сложный фильтр по свойствам. Пример: {'field': 'length', 'operator': '>', 'value': 100}. Поддерживаемые операторы: '==', '>', '<', '>=', '<=', 'contains' (для строк).",
-                                "properties": {
-                                    "field": {"type": "string"},
-                                    "operator": {
-                                        "type": "string",
-                                        "enum": ["==", ">", "<", ">=", "<=", "contains"]
-                                    },
-                                    "value": {"type": ["number", "string", "boolean"]}
+                            'property_filter': {
+                                'type': 'object',
+                                'description': 'Фильтр: {"field": "length", "operator": ">", "value": 100}',
+                                'properties': {
+                                    'field': {'type': 'string'},
+                                    'operator': {'type': 'string', 'enum': ['==', '>', '<', '>=', '<=', 'contains']},
+                                    'value': {'type': ['number', 'string', 'boolean']}
                                 }
                             },
-                            "include_details": {
-                                "type": "boolean",
-                                "description": "Если True, возвращает полные свойства объектов. Если False (по умолчанию) — краткую информацию (handle, тип, слой)."
+                            'include_details': {
+                                'type': 'boolean',
+                                'description': 'Возвращать полные свойства (по умолчанию False)'
                             },
-                            "aggregate": {
-                                "type": "object",
-                                "description": "Параметры для агрегации (использовать с query_type='aggregate'). Пример: {'field': 'length', 'function': 'avg'}. Поддерживаемые функции: 'sum', 'avg', 'min', 'max', 'count'.",
-                                "properties": {
-                                    "field": {"type": "string",
-                                              "description": "Числовое поле для агрегации (например 'length', 'radius', 'area')."},
-                                    "function": {
-                                        "type": "string",
-                                        "enum": ["sum", "avg", "min", "max", "count"],
-                                        "description": "Агрегатная функция."
-                                    }
+                            'aggregate': {
+                                'type': 'object',
+                                'description': 'Агрегация: {"field": "area", "function": "sum"}',
+                                'properties': {
+                                    'field': {'type': 'string', 'description': 'Числовое поле'},
+                                    'function': {'type': 'string', 'enum': ['sum', 'avg', 'min', 'max', 'count']}
                                 },
-                                "required": ["field", "function"]
+                                'required': ['field', 'function']
                             }
                         },
-                        "required": ["query_type"]
+                        'required': ['query_type']
                     }
                 }
             }
@@ -543,16 +515,16 @@ class LLMManager:
             {
                 'role': 'system',
                 'content': (
-                    'You are an expert AutoCAD assistant. Use the provided tools to fulfill the user request.\n'
-                    'IMPORTANT INSTRUCTIONS:\n'
-                    '1. For queries about the drawing content (objects, blocks, layers, etc.), ALWAYS use the "get_drawing_info" tool.\n'
-                    '2. If the user asks for **analytical/statistical** information (average, sum, minimum, maximum, total count, etc.), '
-                    'you MUST use query_type="aggregate" with the appropriate field and function. Do NOT just list objects.\n'
-                    '   Example: "average length of lines" → aggregate={"field": "length", "function": "avg"}, entity_type="AcDbLine".\n'
-                    '   Example: "total area of circles" → aggregate={"field": "area", "function": "sum"}, entity_type="AcDbCircle".\n'
-                    '3. If the user asks to list/find objects, use query_type="entities" or "filtered" with appropriate filters.\n'
-                    '4. If the user asks in Russian, answer in Russian; if in English, answer in English.\n'
-                    '5. Do not guess or make up data – rely on the cache.'
+                    'You are an expert AutoCAD assistant with deep knowledge of construction documentation (SPDS/GOST).\n'
+                    'CRITICAL RULES:\n'
+                    '1. NEVER output raw JSON to the user. Always analyze and summarize in natural language.\n'
+                    '2. For "what objects are in this file?" queries: group by functional category, mention materials if hatches found.\n'
+                    '3. For analytical queries (sum/avg/count): ALWAYS use query_type="aggregate".\n'
+                    '4. When you see layer names like "АР_стены", "КЖ_плиты" — use semantic descriptions from cache.\n'
+                    '5. If hatch pattern is ANSI37/AR-CONC/AR-BRSTD — mention likely material (concrete/RC/brick).\n'
+                    '6. Limit object lists to 10 examples + summary statistics.\n'
+                    '7. Answer in the same language as the question (Russian/English).\n'
+                    '8. If data is missing, say so — never hallucinate.'
                 )
             },
             {'role': 'user', 'content': prompt}
